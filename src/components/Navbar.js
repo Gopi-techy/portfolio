@@ -2,20 +2,18 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(10, 25, 47, 0.85);
-  backdrop-filter: blur(10px);
-  padding: 1rem 2rem;
+  padding: ${props => props.scrolled ? '0.8rem 2rem' : '1.2rem 2rem'};
+  background: ${props => props.scrolled ? 'rgba(10, 25, 47, 0.95)' : 'transparent'};
+  backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
   transition: all 0.3s ease;
-
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
+  border-bottom: ${props => props.scrolled ? '1px solid rgba(100, 255, 218, 0.1)' : 'none'};
+  box-shadow: ${props => props.scrolled ? '0 4px 20px rgba(0, 0, 0, 0.1)' : 'none'};
 `;
 
 const NavContainer = styled.div`
@@ -26,19 +24,24 @@ const NavContainer = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.a`
+const Logo = styled(motion.a)`
   color: #64ffda;
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: ${props => props.scrolled ? '1.3rem' : '1.5rem'};
+  font-weight: 600;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: all 0.3s ease;
 
-  &:hover {
-    color: #ccd6f6;
+  i {
+    font-size: ${props => props.scrolled ? '1.5rem' : '1.8rem'};
+    transition: all 0.3s ease;
   }
 
-  @media (max-width: 768px) {
-    font-size: 1.3rem;
+  &:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
   }
 `;
 
@@ -52,13 +55,13 @@ const NavLinks = styled.div`
   }
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(motion.a)`
   color: #ccd6f6;
   text-decoration: none;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
   position: relative;
   padding: 0.5rem 0;
+  transition: all 0.3s ease;
 
   &::after {
     content: '';
@@ -73,6 +76,7 @@ const NavLink = styled.a`
 
   &:hover {
     color: #64ffda;
+    transform: translateY(-2px);
 
     &::after {
       width: 100%;
@@ -80,7 +84,7 @@ const NavLink = styled.a`
   }
 `;
 
-const MobileMenuButton = styled.button`
+const MobileMenuButton = styled(motion.button)`
   display: none;
   background: none;
   border: none;
@@ -105,28 +109,19 @@ const MobileMenu = styled(motion.div)`
     top: 0;
     right: 0;
     bottom: 0;
-    width: 70%;
-    max-width: 300px;
-    background: #112240;
+    width: 100%;
+    background: #0a192f;
     padding: 5rem 2rem 2rem;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
-
-    &.open {
-      transform: translateX(0);
-    }
+    gap: 2rem;
   }
 `;
 
-const MobileNavLink = styled.a`
+const MobileNavLink = styled(motion.a)`
   color: #ccd6f6;
   text-decoration: none;
-  font-size: 1.1rem;
-  padding: 1rem 0;
-  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  padding: 0.5rem 0;
   position: relative;
-  display: block;
 
   &::after {
     content: '';

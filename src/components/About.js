@@ -27,11 +27,13 @@ const Section = styled.section`
     padding: 4rem 1rem;
   }
 `;
-
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensures the inner content is centered */
   position: relative;
   z-index: 1;
 
@@ -78,36 +80,49 @@ const Grid = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    text-align: center;
+    gap: 3rem;
   }
 `;
 
 const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  max-width: 600px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
 
   @media (max-width: 768px) {
     max-width: 100%;
-    align-items: center;
-    text-align: center;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
 `;
 
 const Heading = styled.h3`
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #ccd6f6;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #64ffda;
+  }
 
   @media (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
   }
 `;
 
@@ -115,48 +130,46 @@ const Paragraph = styled.p`
   color: #8892b0;
   line-height: 1.8;
   font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-  text-align: justify;
+  margin-bottom: 2rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  position: relative;
+  padding: 1.5rem;
+  background: rgba(100, 255, 218, 0.05);
+  border-radius: 10px;
+  border: 1px solid rgba(100, 255, 218, 0.1);
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+
+  &:hover {
+    background: rgba(100, 255, 218, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.1);
+  }
 
   @media (max-width: 768px) {
     font-size: 1rem;
-    text-align: center;
-    padding: 0;
-    margin-bottom: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    padding: 1rem;
+    margin-bottom: 1.2rem;
   }
 `;
-
-const AnimationContainer = styled(motion.div)`
+const AnimationContainer = styled.div`
   width: 100%;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  order: 2;
-
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at center, rgba(100, 255, 218, 0.1) 0%, transparent 70%);
-    z-index: -1;
-  }
+  max-width: 500px;
+  margin-left: auto;
 
   @media (max-width: 768px) {
-    height: 300px;
-    order: 1;
-  }
-
-  @media (max-width: 480px) {
-    height: 250px;
+    margin: 0 auto;
+    max-width: 400px;
   }
 `;
 
@@ -310,61 +323,75 @@ const About = () => {
 
   return (
     <Section id="about">
-      <Container ref={ref}>
-        <motion.div
+      <Container>
+        <Title
+          as={motion.h2}
           variants={containerVariants}
           initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true }}
         >
-          <Title>About Me</Title>
-          <Grid>
-            <AnimationContainer
-              variants={containerVariants}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-            >
-              <Lottie
-                options={defaultOptions}
-                height={400}
-                width={400}
-                style={{ maxWidth: '100%', height: 'auto' }}
-              />
-            </AnimationContainer>
-            <Content>
-              <Heading variants={itemVariants}>Hello, I'm Gopinath</Heading>
-              <Paragraph variants={itemVariants}>
-                I'm a passionate software developer with a keen interest in creating beautiful and functional web applications.
-                With a strong foundation in both frontend and backend development, I enjoy turning complex problems into
-                simple, beautiful, and intuitive solutions.
-                </Paragraph>
-                <Paragraph variants={itemVariants}>
-                Also i have DevOps Engineer experience, where I have worked on automating deployment processes and managing cloud infrastructure.
-                I believe in the power of collaboration and continuous learning, and I'm always eager to take on new challenges. 
-              </Paragraph>
-              <Paragraph variants={itemVariants}>
-                My journey in software development started with a curiosity about how things work on the internet.
-                Today, I'm constantly learning and exploring new technologies to stay at the forefront of web development.
-              </Paragraph>
-            </Content>
-          </Grid>
+          About Me
+        </Title>
+        <Grid>
+          <Content
+            as={motion.div}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <Heading>Hello, I'm Gopinath</Heading>
+            <Paragraph>
+  I'm a passionate software developer with a keen interest in creating beautiful and functional web applications. With a strong foundation in both frontend and backend development, I enjoy turning complex problems into simple, beautiful, and intuitive solutions.
 
-          <TechnologiesSection>
-            <Title>Technologies I Know</Title>
-            <TechnologiesGrid>
-              {technologies.map((tech, index) => (
-                <TechnologyCard
-                  key={tech.name}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <TechnologyIcon>{tech.icon}</TechnologyIcon>
-                  <TechnologyName>{tech.name}</TechnologyName>
-                  <TechnologyDescription>{tech.description}</TechnologyDescription>
-                </TechnologyCard>
-              ))}
-            </TechnologiesGrid>
-          </TechnologiesSection>
-        </motion.div>
+            </Paragraph>
+            <Paragraph>
+              
+Also i have DevOps Engineer experience, where I have worked on automating deployment processes and managing cloud infrastructure. I believe in the power of collaboration and continuous learning, and I'm always eager to take on new challenges.
+            </Paragraph>
+            <Paragraph>
+My journey in software development started with a curiosity about how things work on the internet. Today, I'm constantly learning and exploring new technologies to stay at the forefront of web development.
+            </Paragraph>
+          </Content>
+          <AnimationContainer
+            as={motion.div}
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <Lottie
+             options={defaultOptions}
+              height={400}
+              width={400}
+              style={{ maxWidth: '100%', height: 'auto' }}
+            />
+          </AnimationContainer>
+        </Grid>
+        <TechnologiesSection
+          as={motion.div}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <Title>Technologies I Know</Title>
+          <TechnologiesGrid>
+            {technologies.map((tech, index) => (
+              <TechnologyCard
+                key={tech.name}
+                as={motion.div}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05 }}
+              >
+                <TechnologyIcon>{tech.icon}</TechnologyIcon>
+                <TechnologyName>{tech.name}</TechnologyName>
+                <TechnologyDescription>{tech.description}</TechnologyDescription>
+              </TechnologyCard>
+            ))}
+          </TechnologiesGrid>
+        </TechnologiesSection>
       </Container>
     </Section>
   );

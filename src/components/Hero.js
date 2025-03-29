@@ -514,7 +514,7 @@ const Hero = () => {
                 <FaGithub />
               </SocialLink>
               <SocialLink
-                href="https://www.linkedin.com/in/gopinath-m-218473299"
+                href="https://linkedin.com/gopinath-m-218473299"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
