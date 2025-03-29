@@ -1,10 +1,10 @@
 services:
   - type: web
     name: portfolio-backend
-    env: node
+    runtime: node
     rootDir: backend
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server.js
     envVars:
       - key: EMAIL_USER
         sync: false
