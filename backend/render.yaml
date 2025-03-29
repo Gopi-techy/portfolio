@@ -2,6 +2,7 @@ services:
   - type: web
     name: portfolio-backend
     env: node
+    rootDir: backend
     buildCommand: npm install
     startCommand: node server.js
     envVars:
