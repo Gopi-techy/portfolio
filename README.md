@@ -7,10 +7,6 @@ This is a personal portfolio website built with React.js. It showcases my skills
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-- [Scripts](#scripts)
-- [Deployment](#deployment)
-- [License](#license)
 
 ## Features
 
