@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+// removed unused useInView import
 import Lottie from 'react-lottie';
 import * as codingAnimation from '../assets/coding-animation.json';
 
@@ -254,10 +254,7 @@ const TechnologyDescription = styled.p`
 `;
 
 const About = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  });
+  // Intersection observer not used here; keep markup animation props on motion components instead
 
   const containerVariants = {
     hidden: { opacity: 0 },

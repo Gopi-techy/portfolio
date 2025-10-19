@@ -146,13 +146,11 @@ const MobileNavLink = styled(motion.a)`
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrolled(currentScrollY > 50);
-      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll);

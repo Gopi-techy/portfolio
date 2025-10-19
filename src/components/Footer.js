@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaPhone, FaCode, FaServer, FaDatabase, FaCloud, FaTools } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import { FaCode, FaServer, FaDatabase, FaCloud, FaTools } from 'react-icons/fa';
 
 const FooterSection = styled.footer`
   background: #0a192f;
@@ -123,24 +122,7 @@ const QuickLink = styled.a`
   }
 `;
 
-const ContactInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-`;
-
-const ContactItem = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  color: #8892b0;
-  font-size: 0.95rem;
-
-  svg {
-    color: #64ffda;
-    font-size: 1.2rem;
-  }
-`;
+// ContactInfo/ContactItem removed as inlined simple paragraphs are used in markup
 
 const SkillsList = styled.div`
   display: flex;
@@ -270,7 +252,7 @@ const Footer = () => {
 
         <FooterColumn variants={itemVariants}>
           <h3> Contact Info</h3>
-          <ContactInfo>
+          <div>
             <p>
               <i className="fas fa-map-marker-alt"></i>
                Chennai, Tamil Nadu, India
@@ -283,7 +265,7 @@ const Footer = () => {
               <i className="fas fa-envelope"></i>
                gopinath2k31@gmail.com
             </p>
-          </ContactInfo>
+          </div>
         </FooterColumn>
 
         <FooterColumn variants={itemVariants}>
@@ -309,7 +291,7 @@ const Footer = () => {
       </Container>
 
       <Copyright>
-        <p>&copy; 2025 Gopinath. All rights reserved.</p>
+        <p>&copy;  Gopinath. All rights reserved.</p>
       </Copyright>
     </FooterSection>
   );

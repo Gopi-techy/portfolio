@@ -5,7 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import college from '../assets/college.jpg';
 import scholarship from '../assets/scholarship.png';  
 import chat from '../assets/chat.webp';
-import { FaGithub, FaExternalLinkAlt, FaInfoCircle } from 'react-icons/fa';
+import { FaGithub, FaInfoCircle } from 'react-icons/fa';
 
 const Section = styled.section`
   padding: 6rem 2rem;
@@ -123,12 +123,6 @@ const ProjectContent = styled.div`
   }
 `;
 
-const ProjectHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-`;
 
 const ProjectTitle = styled.h3`
   color: #64ffda;
@@ -175,26 +169,6 @@ const ProjectDescription = styled.p`
   }
 `;
 
-const TechStack = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-const TechTag = styled.span`
-  background: rgba(100, 255, 218, 0.1);
-  color: #64ffda;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-
-  ${ProjectCard}:hover & {
-    background: rgba(100, 255, 218, 0.2);
-    transform: translateY(-2px);
-  }
-`;
 
 const ProjectLinks = styled.div`
   display: flex;
@@ -237,52 +211,6 @@ const ProjectLink = styled.a`
   }
 `;
 
-const DetailsButton = styled.button`
-  background: rgba(100, 255, 218, 0.05);
-  color: #64ffda;
-  padding: 0.5rem 1.5rem;
-  border: 1px solid rgba(100, 255, 218, 0.2);
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(100, 255, 218, 0.1),
-      transparent
-    );
-    transition: 0.5s;
-  }
-
-  &:hover {
-    background: rgba(100, 255, 218, 0.1);
-    transform: translateY(-2px);
-    border-color: rgba(100, 255, 218, 0.4);
-
-    &::before {
-      left: 100%;
-    }
-  }
-
-  i {
-    font-size: 1rem;
-  }
-`;
 
 const Modal = styled(motion.div)`
   position: fixed;
@@ -512,14 +440,7 @@ const Projects = () => {
     }
   };
 
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3 }
-    }
-  };
+  // modal animation variants are inlined where used
 
   const projects = [
     {

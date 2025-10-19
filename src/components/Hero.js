@@ -361,6 +361,7 @@ const Hero = () => {
     }
   };
 
+  // eslint-disable-next-line no-unused-vars
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
