@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import college from '../assets/college.jpg';
-import scholarship from '../assets/scholarship.png';  
-import chat from '../assets/chat.webp';
+import scholarship from '../assets/scholarship.png';
+import skillslate from '../assets/skillslate.png';
+import smartclinichub from '../assets/smartclinichub.png';
 import { FaGithub, FaInfoCircle } from 'react-icons/fa';
 
 const Section = styled.section`
-  padding: 6rem 2rem;
+  padding: 6rem 2rem 3rem;
   background: #0a192f;
   color: #ccd6f6;
   position: relative;
@@ -22,58 +22,87 @@ const Container = styled.div`
 
 const Title = styled.h2`
   font-size: 2.5rem;
-  color: #64ffda;
-  text-align: center;
+  color: #ccd6f6;
+  text-align: left;
   margin-bottom: 3rem;
   position: relative;
   font-weight: 600;
+  display: inline-block;
 
   &::after {
     content: '';
     position: absolute;
     bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
+    left: 0;
+    width: 0;
     height: 3px;
     background: #64ffda;
+    transition: width 0.4s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
+  span {
+    color: #64ffda;
   }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   align-items: stretch;
   padding: 0 1rem;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     padding: 0;
   }
 `;
 
-const ProjectCard = styled.div`
+const ViewMoreButton = styled(motion.a)`
+  display: block;
+  margin: 3rem auto 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: #64ffda;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    color: #52e4c4;
+  }
+`;
+
+const ProjectCard = styled(motion.div)`
   background: #112240;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid #233554;
-  height: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 
   &:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(100, 255, 218, 0.15);
+    border-color: rgba(100, 255, 218, 0.3);
   }
 `;
 
 const ProjectImage = styled.div`
   width: 100%;
-  height: 220px;
+  height: 180px;
   overflow: hidden;
   position: relative;
 
@@ -84,130 +113,71 @@ const ProjectImage = styled.div`
     transition: transform 0.3s ease;
   }
 
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to bottom, transparent 0%, rgba(10, 25, 47, 0.8) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  ${ProjectCard}:hover &::after {
-    opacity: 1;
-  }
-
   ${ProjectCard}:hover img {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 
   @media (max-width: 768px) {
-    height: 200px;
+    height: 160px;
   }
 `;
 
 const ProjectContent = styled.div`
-  padding: 2rem;
+  padding: 1.5rem;
   flex: 1;
   display: flex;
   flex-direction: column;
-  position: relative;
-  z-index: 1;
-  gap: 1rem;
+  gap: 0.8rem;
 
   @media (max-width: 768px) {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
 `;
 
-
 const ProjectTitle = styled.h3`
   color: #64ffda;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 600;
   margin: 0;
-  position: relative;
-  display: inline-block;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: #64ffda;
-    transition: width 0.3s ease;
-  }
-
-  ${ProjectCard}:hover &::after {
-    width: 100%;
-  }
+  line-height: 1.3;
 
   @media (max-width: 768px) {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 `;
 
 const ProjectDescription = styled.p`
   color: #8892b0;
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.5;
   margin: 0;
-  flex: 1;
-  transition: color 0.3s ease;
-
-  ${ProjectCard}:hover & {
-    color: #ccd6f6;
-  }
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 
   @media (max-width: 768px) {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 `;
 
-
-const ProjectLinks = styled.div`
+const ViewDetailsButton = styled.div`
+  color: #64ffda;
+  font-size: 0.9rem;
   display: flex;
-  gap: 1rem;
-  margin-top: auto;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
-`;
-
-const ProjectLink = styled.a`
-  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.2rem;
-  background: rgba(100, 255, 218, 0.05);
-  border: 1px solid rgba(100, 255, 218, 0.2);
-  color: #64ffda;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-  cursor: pointer;
-
-  &:hover {
-    background: rgba(100, 255, 218, 0.1);
-    transform: translateY(-2px);
-    border-color: rgba(100, 255, 218, 0.4);
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-  }
+  margin-top: auto;
+  padding-top: 0.5rem;
 
   svg {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  ${ProjectCard}:hover svg {
+    transform: translateX(5px);
   }
 `;
 
@@ -400,17 +370,6 @@ const TechnologyTag = styled.span`
   }
 `;
 
-const ProjectTechnologies = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.5rem 0;
-
-  @media (max-width: 768px) {
-    justify-content: center;
-  }
-`;
-
 const Projects = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -444,90 +403,97 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'Scholarship Management System',
-      description: 'A MERN stack-based platform with Firebase Authentication, Azure AI for document verification, and DevOps CI/CD.',
+      title: 'SkillSlate',
+      description: 'AI-Powered Portfolio-as-a-Service platform using OpenAI GPT-4o for automated portfolio generation.',
+      image: skillslate,
+      technologies: ['React.js', 'Flask', 'OpenAI', 'GitHub API', 'GitHub Pages', 'OAuth'],
+      github: 'https://github.com/Gopi-techy/SkillSlate',
+      details: {
+        description: 'SkillSlate is an innovative AI-powered platform that generates professional portfolios from prompts or resumes using OpenAI\'s GPT-4o model, cutting portfolio creation time by over 40%.',
+        features: [
+          'Automated portfolio generation from prompts or resume uploads',
+          'OpenAI GPT-4o model integration for intelligent content creation',
+          'GitHub Pages deployment with OAuth-based authentication',
+          'Token management and content validation for secure access',
+          'Secure data handling with time-limited access and encryption',
+          'One-click deployment to GitHub Pages',
+          'Responsive portfolio templates with modern design'
+        ],
+        challenges: [
+          'Integrating OpenAI GPT-4o for accurate portfolio generation',
+          'Implementing secure OAuth authentication with GitHub',
+          'Managing token lifecycle and optimizing API performance'
+        ],
+        solutions: [
+          'Developed custom prompts and fine-tuned GPT-4o for portfolio context',
+          'Implemented OAuth 2.0 with secure token validation and refresh mechanisms',
+          'Optimized API calls with caching and rate limiting for better performance'
+        ]
+      }
+    },
+    {
+      title: 'SmartClinicHub',
+      description: 'End-to-End AI-Powered Healthcare Platform with secure patient-doctor interaction and medical chatbot.',
+      image: smartclinichub,
+      technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'AWS S3', 'LangChain', 'Flask'],
+      github: 'https://github.com/Gopi-techy/SmartClinicHub',
+      details: {
+        description: 'SmartClinicHub is a comprehensive healthcare management system enabling secure patient-doctor interaction, AI-driven medical assistance, and efficient appointment management.',
+        features: [
+          'RAG-based medical chatbot using LangChain and Pinecone for 90%+ response accuracy',
+          'Role-based access control (patient/doctor/admin) using JWT and bcrypt',
+          'Real-time appointment scheduling with MongoDB indexing',
+          'Secure file storage with AWS S3 pre-signed URLs',
+          'API performance optimization achieving 40ms average response time',
+          'Medical records management with encryption',
+          'Real-time notifications and chat functionality'
+        ],
+        challenges: [
+          'Building an accurate medical chatbot with RAG architecture',
+          'Ensuring HIPAA-compliant data security and access control',
+          'Optimizing database queries for real-time performance'
+        ],
+        solutions: [
+          'Implemented RAG using LangChain with medical knowledge base integration',
+          'Secured patient records with AWS S3 encryption and JWT-based authentication',
+          'Optimized MongoDB queries with proper indexing and query optimization'
+        ]
+      }
+    },
+    {
+      title: 'Scholarship Management',
+      description: 'Cloud-based scholarship platform with AI document verification and automated CI/CD pipelines.',
       image: scholarship,
-      technologies: ['Terraform', 'React', 'Node.js', 'Express', 'Azure AI', 'Firebase', 'MongoDB', 'Azure DevOps'],
-      github: 'https://github.com/Gopi-techy/Scholarship-Management-System.git',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Azure AI', 'Azure Blob Storage', 'Terraform', 'Azure DevOps'],
+      github: 'https://github.com/Gopi-techy/Scholarship-Management-System',
       details: {
-        description: 'A robust scholarship management platform designed for secure document verification and seamless workflow with cloud integration.',
+        description: 'A robust scholarship management platform designed for secure document verification, role-based authentication, and seamless cloud integration with DevOps automation.',
         features: [
-          'Role-based authentication with Firebase and Node.js',
-          'Multi-Factor Authentication (MFA) for enhanced security',
-          'Document verification using Azure AI Document Intelligence',
+          'Azure AI Document Intelligence for automated document verification',
+          'Multi-factor authentication (MFA) with Firebase and Node.js',
           'Secure document storage with Azure Blob Storage (RBAC and encryption)',
-          'Automated CI/CD pipelines using Azure DevOps and Terraform',
-          'Real-time alerts for login attempts and application updates',
-          'Admin dashboard with analytics and student application tracking'
+          'Infrastructure as Code (IaC) with Terraform',
+          'Automated CI/CD pipelines using Azure DevOps',
+          'Real-time alerts for login attempts and application status',
+          'Admin dashboard with analytics and reporting',
+          'Student application tracking and workflow management'
         ],
         challenges: [
-          'Ensuring secure document verification with AI',
-          'Optimizing storage performance and access control',
-          'Implementing DevOps automation with Azure Pipelines'
+          'Implementing AI-powered document verification with fraud detection',
+          'Managing cloud infrastructure with automated DevOps pipelines',
+          'Ensuring data security and access control at scale'
         ],
         solutions: [
-          'Integrated Azure AI for fraud detection in document verification',
-          'Utilized MongoDB encryption and indexing for faster retrieval',
-          'Configured Terraform for Infrastructure as Code (IaC) and CI/CD pipelines'
-        ]
-      }
-    },
-    {
-      title: 'College Website with Chatbot',
-      description: 'A modern, responsive college website featuring an AI-powered chatbot for assisting freshers.',
-      image: college,
-      technologies: ['React.js', 'Material-UI', 'Python', 'Flask', 'MongoDB', 'NLP'],
-      github: 'https://github.com/Gopi-techy/St.joseph_Web.git',
-      details: {
-        description: 'An interactive college website with a chatbot to guide students and provide essential information dynamically.',
-        features: [
-          'AI-powered chatbot with NLP for student queries',
-          'Responsive UI built with React.js and Material-UI',
-          'Automated event updates and push notifications',
-          'Student resources and downloadable materials',
-          'Contact form with integrated email notifications'
-        ],
-        challenges: [
-          'Building an NLP-based chatbot for accurate responses',
-          'Ensuring seamless responsiveness across devices',
-          'Managing and rendering dynamic content efficiently'
-        ],
-        solutions: [
-          'Implemented Flask-based chatbot with pre-trained NLP models',
-          'Used React.js and Material-UI for an interactive user experience',
-          'Optimized API calls and data rendering with Flask and MongoDB'
-        ]
-      }
-    },
-    {
-      title: 'Realtime Chat App',
-      description: 'A MERN stack-based real-time chat application with Firebase Authentication, WebSockets, and MongoDB.',
-      image: chat,
-      technologies: ['React', 'Firebase', 'WebSockets', 'Node.js', 'Express', 'MongoDB', 'Auth0'],
-      github: 'https://github.com/Gopi-techy/Chat-app.git',
-      details: {
-        description: 'A real-time chat application with instant messaging, authentication, and a feature-rich user interface.',
-        features: [
-          'Real-time messaging using WebSockets and Firebase Firestore',
-          'User authentication via Firebase and Auth0 with JWT support',
-          'Typing indicators, read receipts, and presence tracking',
-          'Group chats, private messaging, and media file sharing',
-          'Dark/light mode toggle for better accessibility'
-        ],
-        challenges: [
-          'Ensuring low-latency real-time data synchronization',
-          'Managing secure user authentication and session handling',
-          'Optimizing performance for smooth UI interactions'
-        ],
-        solutions: [
-          'Used WebSockets for real-time data updates',
-          'Integrated Firebase Authentication with role-based access control',
-          'Implemented lazy loading and optimized Material-UI components'
+          'Integrated Azure AI Document Intelligence for intelligent verification',
+          'Used Terraform for reproducible infrastructure deployment',
+          'Implemented MongoDB encryption with proper indexing for performance'
         ]
       }
     }
   ];
   
+
+  const displayedProjects = projects.slice(0, 3);
 
   return (
     <Section id="projects">
@@ -537,13 +503,13 @@ const Projects = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          <Title>My Projects</Title>
+          <Title>Featured <span>Work</span></Title>
           <Grid>
-            {projects.map((project, index) => (
+            {displayedProjects.map((project, index) => (
               <ProjectCard
                 key={project.title}
                 variants={itemVariants}
-                whileHover={{ scale: 1.02 }}
+                onClick={() => setSelectedProject(project)}
               >
                 <ProjectImage>
                   <img src={project.image} alt={project.title} />
@@ -551,23 +517,22 @@ const Projects = () => {
                 <ProjectContent>
                   <ProjectTitle>{project.title}</ProjectTitle>
                   <ProjectDescription>{project.description}</ProjectDescription>
-                  <ProjectTechnologies>
-                    {project.technologies.map((tech, index) => (
-                      <TechnologyTag key={index}>{tech}</TechnologyTag>
-                    ))}
-                  </ProjectTechnologies>
-                  <ProjectLinks>
-                    <ProjectLink href={project.github} target="_blank" rel="noopener noreferrer">
-                      <FaGithub /> GitHub
-                    </ProjectLink>
-                    <ProjectLink onClick={() => setSelectedProject(project)}>
-                      <FaInfoCircle /> Details
-                    </ProjectLink>
-                  </ProjectLinks>
+                  <ViewDetailsButton>
+                    View Details <FaInfoCircle />
+                  </ViewDetailsButton>
                 </ProjectContent>
               </ProjectCard>
             ))}
           </Grid>
+          <ViewMoreButton
+            href="https://github.com/Gopi-techy"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            View More Projects
+          </ViewMoreButton>
         </motion.div>
       </Container>
       {selectedProject && (

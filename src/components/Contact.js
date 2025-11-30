@@ -4,89 +4,67 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const Section = styled.section`
-  padding: 6rem 2rem;
+  padding: 5rem 2rem;
   background: #0a192f;
   color: #ccd6f6;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(100, 255, 218, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-  }
 
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 3rem 1rem;
   }
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 `;
 
 const Title = styled.h2`
   font-size: 2.5rem;
   color: #64ffda;
   text-align: center;
-  margin-bottom: 3rem;
-  position: relative;
-  font-weight: 600;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: #64ffda;
-  }
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 
   @media (max-width: 768px) {
     font-size: 2rem;
+  }
+`;
+
+const Subtitle = styled.p`
+  text-align: center;
+  color: #8892b0;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
     margin-bottom: 2rem;
   }
 `;
 
-const ContactGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: start;
-
+const FormWrapper = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  
   @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-`;
-
-const ContactInfo = styled.div`
-  h3 {
-    font-size: 1.8rem;
-    color: #ccd6f6;
-    margin-bottom: 1.5rem;
-  }
-
-  p {
-    color: #8892b0;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
+    max-width: 100%;
   }
 `;
 
 const ContactForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 `;
 
 const FormGroup = styled.div`
@@ -95,24 +73,26 @@ const FormGroup = styled.div`
   gap: 0.5rem;
 
   label {
-    color: #ccd6f6;
-    font-size: 0.9rem;
+    color: #64ffda;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
 `;
 
 const Input = styled.input`
-  padding: 0.8rem;
-  background: rgba(100, 255, 218, 0.05);
-  border: 1px solid rgba(100, 255, 218, 0.1);
-  border-radius: 5px;
+  padding: 0.75rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(100, 255, 218, 0.2);
   color: #ccd6f6;
   font-size: 1rem;
   transition: all 0.3s ease;
 
   &:focus {
     outline: none;
-    border-color: #64ffda;
-    background: rgba(100, 255, 218, 0.1);
+    border-bottom-color: #64ffda;
   }
 
   &::placeholder {
@@ -121,20 +101,20 @@ const Input = styled.input`
 `;
 
 const TextArea = styled.textarea`
-  padding: 0.8rem;
-  background: rgba(100, 255, 218, 0.05);
-  border: 1px solid rgba(100, 255, 218, 0.1);
-  border-radius: 5px;
+  padding: 0.75rem 0;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid rgba(100, 255, 218, 0.2);
   color: #ccd6f6;
   font-size: 1rem;
-  min-height: 150px;
+  min-height: 120px;
   resize: vertical;
   transition: all 0.3s ease;
+  font-family: inherit;
 
   &:focus {
     outline: none;
-    border-color: #64ffda;
-    background: rgba(100, 255, 218, 0.1);
+    border-bottom-color: #64ffda;
   }
 
   &::placeholder {
@@ -143,18 +123,21 @@ const TextArea = styled.textarea`
 `;
 
 const SubmitButton = styled(motion.button)`
-  padding: 1rem 2rem;
-  background: transparent;
-  border: 2px solid #64ffda;
-  color: #64ffda;
+  padding: 1rem 3rem;
+  background: #64ffda;
+  border: none;
+  color: #0a192f;
   font-size: 1rem;
-  border-radius: 5px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: flex-start;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
 
   &:hover {
-    background: rgba(100, 255, 218, 0.1);
+    background: #52e4c4;
+    transform: translateX(4px);
   }
 
   &:disabled {
@@ -167,14 +150,14 @@ const SuccessMessage = styled.div`
   color: #64ffda;
   text-align: center;
   margin-top: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `;
 
 const ErrorMessage = styled.div`
   color: #ff6b6b;
   text-align: center;
   margin-top: 1rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `;
 
 const Contact = () => {
@@ -240,30 +223,22 @@ const Contact = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          Contact Me
+          Let's Connect
         </Title>
-        <ContactGrid>
-          <ContactInfo
-            as={motion.div}
-            initial={{ opacity: 0, x: -20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h3>Get in Touch</h3>
-            <p>
-              I'm always interested in hearing about new projects and opportunities.
-              Feel free to reach out if you'd like to connect!
-            </p>
-            <p>
-              Whether you have a question or just want to say hi, I'll try my best
-              to get back to you as soon as possible.
-            </p>
-          </ContactInfo>
+        <Subtitle
+          as={motion.p}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          Have a project in mind or want to collaborate? Drop me a message!
+        </Subtitle>
+        <FormWrapper>
           <ContactForm
             as={motion.form}
-            initial={{ opacity: 0, x: 20 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleSubmit}
           >
             <FormGroup>
@@ -316,7 +291,7 @@ const Contact = () => {
               <ErrorMessage>{status.message}</ErrorMessage>
             )}
           </ContactForm>
-        </ContactGrid>
+        </FormWrapper>
       </Container>
     </Section>
   );

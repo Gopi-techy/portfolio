@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 import profileImage from '../assets/profile.png';
 
 const Section = styled.section`
   min-height: 100vh;
   display: flex;
   align-items: center;
-  padding: 6rem 2rem;
+  padding: 6rem 2rem 1rem;
   background: #0a192f;
   color: #ccd6f6;
   position: relative;
@@ -28,7 +27,7 @@ const Section = styled.section`
   }
 
   @media (max-width: 768px) {
-    padding: 4rem 1rem;
+    padding: 4rem 1rem 1rem;
     min-height: auto;
   }
 `;
@@ -38,7 +37,7 @@ const Container = styled.div`
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 40% 60%;
   gap: 4rem;
   align-items: center;
   position: relative;
@@ -55,8 +54,8 @@ const Container = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-width: 600px;
+  gap: 0.5rem;
+  max-width: 650px;
 
   @media (max-width: 768px) {
     align-items: center;
@@ -65,20 +64,20 @@ const Content = styled.div`
 `;
 
 const Greeting = styled(motion.h1)`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #64ffda;
   margin-bottom: 0.5rem;
 
   @media (max-width: 480px) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 `;
 
 const Name = styled(motion.h2)`
-  font-size: 4rem;
+  font-size: 4.5rem;
   color: #ccd6f6;
   margin-bottom: 1rem;
-  line-height: 1.2;
+  line-height: 1.1;
   font-weight: 700;
   position: relative;
   display: inline-block;
@@ -117,39 +116,39 @@ const Name = styled(motion.h2)`
 `;
 
 const Title = styled(motion.h3)`
-  font-size: 3rem;
+  font-size: 3.5rem;
   color: #8892b0;
   margin-bottom: 1.5rem;
-  line-height: 1.2;
+  line-height: 1.1;
   font-weight: 600;
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     text-align: center;
     width: 100%;
   }
 
   @media (max-width: 480px) {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 `;
 
 const Description = styled(motion.p)`
   color: #8892b0;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   line-height: 1.8;
   max-width: 600px;
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 
   @media (max-width: 768px) {
-    font-size: 1.1rem;
-    margin: 0 auto 2rem;
+    font-size: 1.15rem;
+    margin: 0 auto;
     max-width: 100%;
     text-align: center;
   }
 
   @media (max-width: 480px) {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 `;
 
@@ -158,19 +157,21 @@ const Button = styled(motion.a)`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 1rem 2rem;
-  background: rgba(100, 255, 218, 0.1);
+  padding: 1rem 2.5rem;
+  background: rgba(100, 255, 218, 0.15);
   border: 2px solid #64ffda;
   color: #64ffda;
   text-decoration: none;
-  border-radius: 30px;
+  border-radius: 50px;
   font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
   width: fit-content;
   position: relative;
   overflow: hidden;
-  margin: 0 auto;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(100, 255, 218, 0.2);
 
   &::before {
     content: '';
@@ -182,7 +183,7 @@ const Button = styled(motion.a)`
     background: linear-gradient(
       90deg,
       transparent,
-      rgba(100, 255, 218, 0.2),
+      rgba(255, 255, 255, 0.3),
       transparent
     );
     transition: 0.5s;
@@ -193,33 +194,81 @@ const Button = styled(motion.a)`
   }
 
   &:hover {
-    background: rgba(100, 255, 218, 0.2);
+    background: rgba(100, 255, 218, 0.25);
+    color: #64ffda;
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(100, 255, 218, 0.2);
+    box-shadow: 0 6px 20px rgba(100, 255, 218, 0.3);
   }
 
   @media (max-width: 768px) {
     font-size: 1rem;
-    padding: 0.8rem 1.5rem;
-    width: 200px;
+    padding: 0.9rem 2rem;
   }
 
   @media (max-width: 480px) {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.2rem;
-    width: 180px;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.8rem;
   }
 `;
 
-const SocialLinks = styled(motion.div)`
+const ButtonContainer = styled.div`
   display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 3rem;
+  margin-top: 2rem;
 
   @media (max-width: 768px) {
+    justify-content: center;
+    flex-direction: column;
     gap: 1.5rem;
+  }
+`;
+
+const SocialLinksContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+const SocialLinks = styled(motion.div)`
+  position: ${props => props.$scrolled ? 'fixed' : 'relative'};
+  left: ${props => props.$scrolled ? '2rem' : 'auto'};
+  bottom: ${props => props.$scrolled ? '0' : 'auto'};
+  display: ${props => props.$scrolled ? 'flex' : 'flex'};
+  flex-direction: ${props => props.$scrolled ? 'column' : 'row'};
+  gap: ${props => props.$scrolled ? '1.5rem' : '1.5rem'};
+  margin-top: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: ${props => props.$scrolled ? '100' : '1'};
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: ${props => props.$scrolled ? '1' : '1'};
+  
+  &::after {
+    content: ${props => props.$scrolled ? "''" : 'none'};
+    width: 2px;
+    height: 100px;
+    background: #8892b0;
+    margin-top: 1.5rem;
+    animation: slideDown 0.6s ease-out;
+  }
+
+  @keyframes slideDown {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    display: ${props => props.$scrolled ? 'none' : 'flex'};
+    
+    &::after {
+      display: none;
+    }
   }
 `;
 
@@ -279,6 +328,7 @@ const ImageContainer = styled(motion.div)`
   width: 350px;
   height: 350px;
   margin: 0 auto;
+  animation: floatSlow 6s ease-in-out infinite;
 
   &::before {
     content: '';
@@ -314,6 +364,19 @@ const ImageContainer = styled(motion.div)`
     }
   }
 
+  @keyframes floatSlow {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  &:hover {
+    animation-play-state: paused;
+  }
+
   @media (max-width: 768px) {
     width: 280px;
     height: 280px;
@@ -333,22 +396,30 @@ const ProfileImage = styled(motion.img)`
   border-radius: 50%;
   position: relative;
   z-index: 1;
-  filter: grayscale(100%) brightness(0.9);
   transition: all 0.5s ease;
   background: transparent;
   padding: 10px;
 
   &:hover {
-    filter: grayscale(0%) brightness(1);
     transform: scale(1.05);
   }
 `;
 
 const Hero = () => {
+  const [scrolled, setScrolled] = React.useState(false);
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1
   });
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -436,25 +507,26 @@ const Hero = () => {
   };
 
   return (
-    <Section id="home">
-      <Container ref={ref}>
-        <ImageContainer
-          variants={imageContainerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          whileHover="hover"
-        >
-          <ProfileImage
-            src={profileImage}
-            alt="Gopinath"
-            whileHover={{ 
-              scale: 1.05,
-              filter: "grayscale(0%) brightness(1)",
-              transition: { duration: 0.5 }
-            }}
-            transition={{ duration: 0.5 }}
-          />
-        </ImageContainer>
+    <>
+      <Section id="home">
+        <Container ref={ref}>
+          <ImageContainer
+            variants={imageContainerVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            whileHover="hover"
+          >
+            <ProfileImage
+              src={profileImage}
+              alt="Gopinath"
+              whileHover={{ 
+                scale: 1.05,
+                filter: "grayscale(0%) brightness(1)",
+                transition: { duration: 0.5 }
+              }}
+              transition={{ duration: 0.5 }}
+            />
+          </ImageContainer>
 
         <motion.div
           variants={containerVariants}
@@ -487,7 +559,7 @@ const Hero = () => {
               variants={titleVariants}
               whileHover={{ scale: 1.02 }}
             >
-              I build things for the web.
+              I build things for the web and cloud.
             </Title>
             <Description 
               variants={enhancedItemVariants}
@@ -496,45 +568,50 @@ const Hero = () => {
               I'm a software developer specializing in building exceptional digital experiences.
               Currently, I'm focused on building accessible, human-centered products.
             </Description>
-            <Button
-              href="#projects"
-              variants={enhancedItemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View My Work
-            </Button>
-            <SocialLinks variants={enhancedItemVariants}>
-              <SocialLink
-                href="https://github.com/Gopi-techy"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
+            <ButtonContainer>
+              <Button
+                href="#projects"
+                variants={enhancedItemVariants}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <FaGithub />
-              </SocialLink>
-              <SocialLink
-                href="https://linkedin.com/gopinath-m-218473299"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <FaLinkedin />
-              </SocialLink>
-              <SocialLink
-                href="mailto:gopinath2k31@gmail.com"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <MdEmail />
-              </SocialLink>
-            </SocialLinks>
+                View My Works
+              </Button>
+              <SocialLinksContainer>
+                <SocialLinks variants={enhancedItemVariants} $scrolled={scrolled}>
+                  <SocialLink
+                    href="https://linkedin.com/in/gopinath-m-218473299"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaLinkedin />
+                  </SocialLink>
+                  <SocialLink
+                    href="https://github.com/Gopi-techy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaGithub />
+                  </SocialLink>
+                  <SocialLink
+                    href="mailto:gopinath2k31@gmail.com"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <FaEnvelope />
+                  </SocialLink>
+                </SocialLinks>
+              </SocialLinksContainer>
+            </ButtonContainer>
           </Content>
         </motion.div>
       </Container>
     </Section>
+    </>
   );
 };
 

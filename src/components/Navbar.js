@@ -158,25 +158,16 @@ const Navbar = () => {
   }, []);
 
   const navVariants = {
-    hidden: { y: -100 },
     visible: {
       y: 0,
       transition: {
         duration: 0.5,
         ease: "easeOut"
       }
-    },
-    scrolled: {
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut"
-      }
     }
   };
 
   const linkVariants = {
-    hidden: { opacity: 0, y: -20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -208,8 +199,8 @@ const Navbar = () => {
     <Nav
       scrolled={scrolled}
       variants={navVariants}
-      initial="hidden"
-      animate={scrolled ? "scrolled" : "visible"}
+      initial="visible"
+      animate="visible"
     >
       <NavContainer>
         <Logo href="#home" scrolled={scrolled}>
