@@ -7,9 +7,9 @@ const Nav = styled(motion.nav)`
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: ${props => props.$menuOpen ? '1001' : '1000'};
   padding: ${props => props.scrolled ? '0.8rem 2rem' : '1.2rem 2rem'};
-  background: ${props => props.scrolled ? 'rgba(10, 25, 47, 0.95)' : 'transparent'};
+  background: ${props => props.$menuOpen ? '#0a192f' : (props.scrolled ? 'rgba(10, 25, 47, 0.95)' : 'transparent')};
   backdrop-filter: ${props => props.scrolled ? 'blur(10px)' : 'none'};
   transition: all 0.3s ease;
   border-bottom: ${props => props.scrolled ? '1px solid rgba(100, 255, 218, 0.1)' : 'none'};
@@ -92,7 +92,8 @@ const MobileMenuButton = styled(motion.button)`
   font-size: 1.5rem;
   cursor: pointer;
   padding: 0.5rem;
-  z-index: 1001;
+  z-index: 1002;
+  position: relative;
 
   @media (max-width: 768px) {
     display: block;
@@ -107,13 +108,16 @@ const MobileMenu = styled(motion.div)`
     flex-direction: column;
     position: fixed;
     top: 0;
+    left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    background: rgba(10, 25, 47, 0.98);
-    backdrop-filter: blur(10px);
+    width: 100vw;
+    height: 100vh;
+    background: #0a192f;
     padding: 5rem 2rem 2rem;
     gap: 2rem;
+    z-index: 1000;
+    overflow-y: auto;
   }
 `;
 
@@ -199,6 +203,7 @@ const Navbar = () => {
   return (
     <Nav
       scrolled={scrolled}
+      $menuOpen={isOpen}
       variants={navVariants}
       initial="visible"
       animate="visible"
@@ -210,7 +215,7 @@ const Navbar = () => {
         </Logo>
 
         <NavLinks>
-          {['Home', 'About', 'Projects', 'Experience', 'Contact'].map((item) => (
+          {['Home', 'Projects', 'Experience', 'Achievements', 'Contact'].map((item) => (
             <NavLink
               key={item}
               href={`#${item.toLowerCase()}`}
@@ -238,7 +243,7 @@ const Navbar = () => {
             animate="open"
             exit="closed"
           >
-            {['Home', 'About', 'Projects', 'Experience', 'Contact'].map((item) => (
+            {['Home', 'Projects', 'Experience', 'Achievements', 'Contact'].map((item) => (
               <MobileNavLink
                 key={item}
                 href={`#${item.toLowerCase()}`}
