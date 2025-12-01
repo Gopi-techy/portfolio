@@ -110,7 +110,8 @@ const MobileMenu = styled(motion.div)`
     right: 0;
     bottom: 0;
     width: 100%;
-    background: #0a192f;
+    background: rgba(10, 25, 47, 0.98);
+    backdrop-filter: blur(10px);
     padding: 5rem 2rem 2rem;
     gap: 2rem;
   }

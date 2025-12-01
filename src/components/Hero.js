@@ -381,11 +381,15 @@ const ImageContainer = styled(motion.div)`
     width: 280px;
     height: 280px;
     order: -1;
+    animation: none;
+    transform: translateY(0) !important;
   }
 
   @media (max-width: 480px) {
     width: 220px;
     height: 220px;
+    animation: none;
+    transform: translateY(0) !important;
   }
 `;
 
