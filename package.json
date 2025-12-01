@@ -48,6 +48,5 @@
   "devDependencies": {
     "gh-pages": "^6.3.0",
     "sharp": "^0.34.5"
-  },
-  "homepage": "https://Gopi-techy.github.io/portfolio"
+  }
 }
