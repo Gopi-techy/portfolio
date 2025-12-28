@@ -356,9 +356,6 @@ This wasn't just a workshop—it was a moment to ignite curiosity and creativity
 🚀 How to put your website on the internet
 
 The energy in the room with 240+ bright young learners was just phenomenal! Their questions, ideas, and curiosity made the session truly interactive and inspiring.
-
-A heartfelt thank you to Mrs. Saranya S, Mr. Venkatesan Sir, and our beloved HoD, Priscilla Babu Manaseh for their trust, support, and the opportunity to contribute to this wonderful initiative.
-
 Grateful to be part of their first step toward tech careers. Can't wait to see them build, break, and rebuild amazing things!`,
       images: [workshop1, workshop2, workshop3]
     },
@@ -377,14 +374,9 @@ Across the day, three impactful tracks inspired us with knowledge and vision:
 ⚡ Serverless & Developer Tools – insights on building, scaling, and experimenting with AWS-powered solutions.
 ⚡ Security – critical conversations on trust, compliance, and the evolving role of AI in cloud security.
 
-It was an honor to listen to keynote speakers Shubham Londhe and Arkodyuti Saha, who energized the community with their insights. 🌟
-
 We also had an incredible lineup of speakers who brought unmatched energy and expertise.
-
-A special thanks to Dr. KARTHI M Sir for his constant guidance, and to our amazing captains Dhyana Suresh and Mohana Priya S, whom I was glad to support throughout the event. 🙌
-
-Special shoutout to AWS Cloud Club St.Joseph's Group of Institutions for empowering us and making this event possible! 💜
-
+From deep dives into cutting-edge technologies to practical sessions on cloud computing, every talk was a treasure trove of knowledge.
+The event was made even more special with fun activities like quizzes, giveaways, and networking sessions that fostered connections among attendees.
 Beyond the sessions, it was the connections and conversations that made the experience even more memorable — meeting community leaders, mentors, and peers, all sharing the same passion for cloud and innovation.`,
       images: [aws1, aws2, aws3]
     },

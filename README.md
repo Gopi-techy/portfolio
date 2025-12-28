@@ -2,8 +2,6 @@
 
 A modern, responsive portfolio website showcasing my skills, projects, and professional experience as a Full-Stack Developer and Cloud Engineer.
 
-🔗 **Live Site**: [Your Custom Domain]
-
 ## ✨ Features
 
 - **Responsive Design**: Fully optimized for desktop, tablet, and mobile devices
