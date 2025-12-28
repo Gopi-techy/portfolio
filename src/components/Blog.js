@@ -390,7 +390,7 @@ Beyond the sessions, it was the connections and conversations that made the expe
     },
     {
       id: 3,
-      title: "Peer Learning Session - Git & Cloud Fundamentals",
+      title: "Peer Learning Session",
       description: "Conducted an interactive session with peers covering Git version control and cloud computing basics.",
       fullDescription: `Had an engaging peer learning session focused on building foundational skills in Git and Cloud Computing.
 
@@ -416,7 +416,7 @@ The session was interactive and practical, with everyone working on their own sy
 
 Special thanks to all my peers who participated actively and made this learning session productive. The collaborative learning atmosphere and peer-to-peer knowledge sharing made the experience truly valuable.
 
-These fundamentals form the backbone of modern software development, and it was great to explore them together as a community of learners! 💻🚀`,
+These fundamentals form the backbone of modern software development, and it was great to explore them together as a community of learners!`,
       images: [git1, git2, git3]
     }
   ];

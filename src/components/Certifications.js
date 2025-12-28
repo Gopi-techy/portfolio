@@ -72,7 +72,7 @@ const CertificationsGrid = styled.div`
   }
 `;
 
-const CertCard = styled(motion.div)`
+const CertCard = styled(motion.a)`
   background: rgba(100, 255, 218, 0.03);
   border: 1px solid rgba(100, 255, 218, 0.1);
   border-radius: 20px;
@@ -81,6 +81,9 @@ const CertCard = styled(motion.div)`
   transition: all 0.4s ease;
   position: relative;
   overflow: hidden;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -204,19 +207,22 @@ const Certifications = () => {
       name: 'Azure Cloud Fundamentals',
       code: 'AZ-900',
       date: 'Feb 2025',
-      badge: azureBadge
+      badge: azureBadge,
+      link: 'https://learn.microsoft.com/en-us/users/gopinathm-7044/credentials/69d02ac2eb829844'
     },
     {
       name: 'Azure AI Fundamentals',
       code: 'AI-900',
       date: 'Jun 2025',
-      badge: azureBadge
+      badge: azureBadge,
+      link: 'https://learn.microsoft.com/en-us/users/gopinathm-7044/credentials/7eb8fc02d8c553ca'
     },
     {
       name: 'GitHub Foundations',
       code: 'Certification Program',
       date: 'Jun 2025',
-      badge: githubBadge
+      badge: githubBadge,
+      link: 'https://www.credly.com/earner/earned/badge/8125bc7a-3150-4c07-a9f8-700b6a172c7e'
     }
   ];
 
@@ -234,7 +240,13 @@ const Certifications = () => {
           
           <CertificationsGrid>
             {certifications.map((cert, index) => (
-              <CertCard key={index} variants={cardVariants}>
+              <CertCard 
+                key={index} 
+                variants={cardVariants}
+                href={cert.link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <BadgeContainer>
                   <BadgeImage src={cert.badge} alt={cert.name} />
                 </BadgeContainer>

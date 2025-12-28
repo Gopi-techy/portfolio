@@ -141,8 +141,7 @@ Edit `public/manifest.json` to customize:
 ## 📧 Contact
 
 **Gopinath**
-- Email: [Your Email]
-- LinkedIn: [Your LinkedIn]
+- Email: [gopinath2k31@gmail.com]
 - GitHub: [@Gopi-techy](https://github.com/Gopi-techy)
 
 ## 📄 License

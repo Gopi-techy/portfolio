@@ -244,6 +244,7 @@ const SocialLinks = styled(motion.div)`
   z-index: ${props => props.$scrolled ? '100' : '1'};
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: ${props => props.$scrolled ? '1' : '1'};
+  padding-bottom: ${props => props.$scrolled ? '2rem' : '0'};
   
   &::after {
     content: ${props => props.$scrolled ? "''" : 'none'};
@@ -260,6 +261,14 @@ const SocialLinks = styled(motion.div)`
     }
     to {
       height: 100px;
+    }
+  }
+
+  @media (max-width: 1440px) {
+    display: ${props => props.$scrolled ? 'none' : 'flex'};
+    
+    &::after {
+      display: none;
     }
   }
 
